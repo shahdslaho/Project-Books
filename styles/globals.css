@@ -1,0 +1,43 @@
+:root {
+  --primary-color: #4a2511;
+  --primary-color-transparent: #321201a0;
+  --text-color: #f5e6d3;
+  --border-color: rgba(245, 230, 211, 0.15);
+  --shadow-color: rgba(74, 37, 17, 0.3);
+  --placeholder-color: rgba(245, 230, 211, 0.6);
+  --skeleton-color-1: #f0f0f0;
+  --skeleton-color-2: #e0e0e0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+body {
+  background-image: url('../public/assets/images/img.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  color: var(--color-black);
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 1200px) {
+  body {
+    background-image: url('../public/assets/images/image4.jpg');
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    background-image: url('../public/assets/images/image4.jpg');
+  }
+}

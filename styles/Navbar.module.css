@@ -1,0 +1,173 @@
+.navbar {
+    position: fixed; 
+    top: 0; /* يضع الناف في أعلى الصفحة */
+    width: 100%; /* يجعل الناف تغطي كامل عرض الصفحة */
+    z-index: 1000; /* يضمن أن الناف تظهر فوق المحتويات الأخرى */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--primary-color-transparent);
+    backdrop-filter: blur(8px);
+    padding: 15px 20px;
+    color: var(--text-color);
+    direction: ltr;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    border-bottom: 1px solid var(--border-color);
+   
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logoText {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 36px;
+    color: var(--text-color);
+    margin-right: 10px;
+}
+
+.logoIcon {
+    font-size: 28px;
+    color: var(--text-color);
+}
+
+.navLinks {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: 0 30px;
+}
+
+.navLink {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+    padding: 5px 15px;
+
+    position: relative;
+}
+
+.navLink::after {
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 1px;
+    bottom: 0;
+    left: 15%;
+    background: linear-gradient(to left, #dbbc935b 0%, var(--text-color) 100%);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.navLink:hover::after,
+.navLink.active::after {
+    transform: scaleX(1);
+}
+
+
+.booksIcon {
+    font-size: 28px;
+    color: var(--text-color);
+    margin-left: 10px;
+}
+
+.heartIconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navFavoriteIcon {
+    color: rgb(131, 2, 2);
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.navFavoriteIcon:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 1200px) {
+    .logoText {
+        font-size: 32px;
+    }
+    .navLink {
+        font-size: 16px;
+        padding: 5px 12px;
+    }
+}
+
+@media (max-width: 992px) {
+    .logoText {
+        font-size: 28px;
+    }
+    .navLinks {
+        gap: 20px;
+    }
+    .navLink {
+        font-size: 15px;
+        padding: 5px 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 12px 15px;
+        flex-wrap: nowrap; /* Keep items on same line */
+    }
+    .navLinks {
+        width: auto; /* Remove full width */
+        justify-content: flex-end;
+        margin-top: 0;
+        gap: 15px;
+    }
+    .logoText {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        padding: 10px;
+    }
+    .navLinks {
+        gap: 8px;
+    }
+    .navLink {
+        font-size: 14px;
+        padding: 4px 6px;
+    }
+    .logoText {
+        font-size: 20px;
+    }
+    .logoIcon, .booksIcon {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 400px) {
+    .navbar {
+        padding: 8px;
+    }
+    .logoText {
+        font-size: 18px;
+    }
+    .navLink {
+        font-size: 12px;
+        padding: 3px 4px;
+    }
+    .navLinks {
+        gap: 5px;
+    }
+}

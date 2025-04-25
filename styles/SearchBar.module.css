@@ -1,0 +1,45 @@
+.searchContainer {
+  margin: 30px auto;
+  max-width: 400px;
+  padding: 0 20px;
+}
+
+.searchInputWrapper {
+  position: relative;
+  width: 100%;
+  background: var(--primary-color-transparent);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  border: 2px solid var(--border-color);
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 15px;
+  color: var(--text-color);
+  font-size: 18px;
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px 20px 12px 45px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text-color);
+}
+
+.searchInput::placeholder {
+  color: var(--placeholder-color);
+}
+
+.searchInput:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--border-color);
+}
+
+/* Remove the empty rule */

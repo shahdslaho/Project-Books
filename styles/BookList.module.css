@@ -1,0 +1,191 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.booksGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  margin-top: 30px;
+  padding: 20px;
+}
+
+@media (max-width: 992px) {
+  .booksGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    margin-top: 90px;
+  }
+  .booksGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color:var(--text-color);
+  margin-bottom: 10px;
+}
+
+.author {
+  font-size: 0.9rem;
+  color:var(--text-color);
+  margin-bottom: 15px;
+}
+
+
+.button {
+  background-color:var(--text-color);
+  color:var(--primary-color);;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left:10px;
+  margin-top: 20px;
+}
+
+
+.skeletonContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  padding: 20px;
+}
+
+.skeletonCard {
+  background:var(--text-color);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.skeletonImage {
+  width: 150px;
+  height: 220px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+.skeletonTitle {
+  width: 80%;
+  height: 20px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeletonAuthor {
+  width: 60%;
+  height: 16px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeletonButtons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.skeletonButton {
+  width: 80px;
+  height: 32px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 20px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media (max-width: 992px) {
+  .skeletonContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .skeletonContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
+.heartButton, .trashButton {
+ 
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.heartIcon {
+  font-size: 24px;
+  color: #321201;
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.heartIcon.filled {
+  color: rgb(131, 2, 2);
+}
+
+.trashIcon {
+  font-size: 18px;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.heartButton:hover .heartIcon,
+.trashButton:hover .trashIcon {
+  transform: scale(1.1);
+}
+
+.readButton {
+  background-color: var(--text-color);
+  color:var(--primary-color) ;
+ 
+  gap: 5px;
+}
+
+.checkIcon {
+  font-size: 10px;
+}
+
+.noResults {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.2em;
+  color: #666;
+}
