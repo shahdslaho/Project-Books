@@ -5,7 +5,7 @@ import FavoriteBooks from '../components/FavoriteBooks';
 export default function FavoritesPage() {
   return (
     <>
-      <Navbar activePage="favorites" />
+      <Navbar  />
       <FavoriteBooks />
     </>
   );

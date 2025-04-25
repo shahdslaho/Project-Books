@@ -5,7 +5,7 @@ import ReadBooks from '../components/ReadBooks';
 export default function ReadPage() {
     return (
         <>
-            <Navbar activePage="read" />
+            <Navbar  />
             <ReadBooks />
         </>
     );

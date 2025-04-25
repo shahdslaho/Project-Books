@@ -7,7 +7,7 @@ export default function BooksPage() {
   return (
    
        <>
-       <Navbar activePage="books" />
+       <Navbar  />
        <Books />
      </>
   );
