@@ -1,24 +1,16 @@
 import React from 'react';
 import { FaHeart, FaRegHeart, FaTrash, FaCheck, FaBook } from 'react-icons/fa';
 import styles from '../styles/BookCard.module.css';
+import { Book } from '../types/Book';
+
 
 interface BookCardProps {
-  book: {
-    id: string;
-    volumeInfo: {
-      title: string;
-      authors?: string[];
-      imageLinks?: {
-        thumbnail: string;
-      };
-      previewLink?: string;
-    };
-  };
+  book: Book;
   isFavorite?: boolean;
   isRead?: boolean;
-  onFavorite?: (book: BookCardProps['book']) => void;
-  onRemove?: (book: BookCardProps['book']) => void;
-  onMarkAsRead?: (book: BookCardProps['book']) => void;
+  onFavorite?: (book: Book) => void;
+  onRemove?: (book: Book) => void;
+  onMarkAsRead?: (book: Book) => void;
   showFavorite?: boolean;
   showRead?: boolean;
 }

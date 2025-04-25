@@ -5,19 +5,7 @@ import SearchBar from './SearchBar';
 import BookCard from './BookCard';
 import LoadingMessage from './BookCardSkeleton';
 import { useBooks } from '../hooks/useBooks';
-
-export interface Book {
-  id: string;
-  volumeInfo: {
-    title: string;
-    authors: string[];
-    imageLinks: {
-      thumbnail: string;
-    };
-    previewLink: string;
-    description?: string;
-  };
-}
+import { Book } from '../types/Book'; // ✅ استخدام النوع من الملف الموحد
 
 export default function Books() {
   const {
@@ -56,16 +44,29 @@ export default function Books() {
         }
       >
         <div className={styles.booksGrid}>
-          {books.map((book) => (
-            <BookCard
-              key={book.id}
-              book={book}
-              isFavorite={favorites.includes(book.id)}
-              isRead={readBooks.includes(book.id)}
-              onFavorite={handleFavorite} 
-              onMarkAsRead={handleMarkAsRead} 
-            />
-          ))}
+          {books.map((book) => {
+            // تحويل الكتاب إلى النوع المتوقع بشكل صريح
+            const bookForCard: Book = {
+              id: book.id,
+              volumeInfo: {
+                title: book.volumeInfo.title,
+                authors: book.volumeInfo.authors,
+                imageLinks: book.volumeInfo.imageLinks,
+                previewLink: book.volumeInfo.previewLink
+              }
+            };
+            
+            return (
+              <BookCard
+                key={book.id}
+                book={bookForCard}
+                isFavorite={favorites.includes(book.id)}
+                isRead={readBooks.includes(book.id)}
+                onFavorite={handleFavorite}
+                onMarkAsRead={handleMarkAsRead}
+              />
+            );
+          })}
         </div>
       </InfiniteScroll>
     </div>

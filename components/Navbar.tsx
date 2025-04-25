@@ -4,7 +4,12 @@ import { useRouter } from 'next/router';
 import styles from '../styles/Navbar.module.css';
 import { FaHeart, FaBook } from 'react-icons/fa';
 
-const Navbar = () => {
+// إضافة واجهة للخصائص
+interface NavbarProps {
+  activePage?: string;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ activePage }) => {
   const router = useRouter();
   const currentPath = router.pathname;
 
