@@ -5,8 +5,7 @@ import SearchBar from './SearchBar';
 import BookCard from './BookCard';
 import LoadingMessage from './BookCardSkeleton';
 import { useBooks } from '../hooks/useBooks';
-import { Book } from '../types/Book'; // ✅ استخدام النوع من الملف الموحد
-
+import { Book } from '../types/Book'; 
 export default function Books() {
   const {
     books,

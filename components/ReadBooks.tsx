@@ -36,6 +36,21 @@ export default function ReadBooks() {
     }
   }, []);
 
+  // إضافة useEffect جديد لتصفية الكتب عند تغيير قيمة البحث
+  useEffect(() => {
+    if (searchQuery.trim() === '') {
+      setFilteredBooks(readBooks);
+    } else {
+      const filtered = readBooks.filter(book => 
+        book.volumeInfo.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (book.volumeInfo.authors && book.volumeInfo.authors.some(author => 
+          author.toLowerCase().includes(searchQuery.toLowerCase())
+        ))
+      );
+      setFilteredBooks(filtered);
+    }
+  }, [searchQuery, readBooks]);
+
   const handleAddToFavorites = (book: Book) => {
     const savedFavorites = JSON.parse(localStorage.getItem('favoriteBookDetails') || '[]');
     const favoriteIds = JSON.parse(localStorage.getItem('favoriteBooks') || '[]');
