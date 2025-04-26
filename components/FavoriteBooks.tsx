@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/BookList.module.css';
-import BookSearchBar from './SearchBar';
+import SearchBar from './SearchBar';
 import BookCard from './BookCard';
-import useBookSearchStore from '../store/bookSearchStore';
+
 
 interface Book {
   id: string;
@@ -19,7 +19,9 @@ interface Book {
 export default function FavoriteBooks() {
   const [favoriteBooks, setFavoriteBooks] = useState<Book[]>([]);
   const [readBooks, setReadBooks] = useState<string[]>([]);
-  const { searchTerm, setSearchTerm } = useBookSearchStore(); // 🟢 Added setSearchTerm
+  // استبدال استخدام المتجر بحالة محلية
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredBooks, setFilteredBooks] = useState<Book[]>([]);
 
   useEffect(() => {
     const savedBooks = localStorage.getItem('favoriteBooks');
@@ -37,9 +39,11 @@ export default function FavoriteBooks() {
           if (fullBooksData) {
             const books = JSON.parse(fullBooksData);
             setFavoriteBooks(books);
+            setFilteredBooks(books); // تعيين الكتب المصفاة أيضًا
           }
         } else {
           setFavoriteBooks(parsedData);
+          setFilteredBooks(parsedData); // تعيين الكتب المصفاة أيضًا
         }
       } catch (error) {
         console.error("Error parsing favorite books:", error);
@@ -47,12 +51,20 @@ export default function FavoriteBooks() {
     }
   }, []);
 
-  const filteredBooks = favoriteBooks.filter(book =>
-    book.volumeInfo.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    book.volumeInfo.authors?.some(author =>
-      author.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-  );
+  // إضافة useEffect لتصفية الكتب عند تغيير قيمة البحث
+  useEffect(() => {
+    if (searchQuery.trim() === '') {
+      setFilteredBooks(favoriteBooks);
+    } else {
+      const filtered = favoriteBooks.filter(book => 
+        book.volumeInfo.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        book.volumeInfo.authors?.some(author =>
+          author.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      );
+      setFilteredBooks(filtered);
+    }
+  }, [searchQuery, favoriteBooks]);
 
   const handleRemoveFromFavorites = (book: Book) => {
     if (window.confirm('Are you sure you want to remove this book from favorites?')) {
@@ -79,10 +91,9 @@ export default function FavoriteBooks() {
 
   return (
     <div className={styles.container}>
-      {/* 🟢 Passing props to BookSearchBar */}
-      <BookSearchBar 
-        searchQuery={searchTerm} 
-        setSearchQuery={setSearchTerm}
+      <SearchBar 
+        searchQuery={searchQuery} 
+        setSearchQuery={setSearchQuery}
         placeholder="Search in your favorite books..."
       />
       <div className={styles.booksGrid}>
